@@ -5,6 +5,7 @@ class Player{
     int x,y;
     int size;
     int speed = 4;
+    boolean portal_event = false;
     
     Player(int player, int px, int py, int radius){
         id = player;
@@ -15,7 +16,7 @@ class Player{
     
     void display(){
         fill(pcolor);
-        ellipse(x,y,size,size);
+        rect(x,y,size,size); //player was ellipse shape
     }
     
     void move(){
@@ -23,6 +24,16 @@ class Player{
         else if(keys[RIGHT]) x+=speed;
         if(keys[UP]) y-=speed;
         else if(keys[DOWN]) y+=speed;
+    }
+    
+    void portal(){
+        if(!portal_event){
+            if(600<x&&x<750&&600<y&&y<750){
+                dim = (dim+4)%3;
+                pcolor = colors[dim];
+                portal_event = true;
+            }
+        } 
     }
   
 }
